@@ -18,13 +18,10 @@ The public annotated dataset should be downloaded from the associated Zenodo rec
 
 This code release does not include:
 
-- API keys or credentials.
 - Raw annotation batch/runtime artifacts.
 - Individual reviewer workbooks or adjudication worksheets.
 - Raw packet text files.
 - Large downloaded FDA evidence-document archives.
-- Manuscript Word files.
-- Local machine paths.
 
 ## Reproducibility Notes
 
