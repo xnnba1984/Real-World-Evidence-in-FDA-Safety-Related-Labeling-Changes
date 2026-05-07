@@ -1,0 +1,249 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SrLC Event Annotation Output v2",
+  "description": "Structured output schema for event-level RWE annotation. One object per event_id.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "rwe_documented_publicly",
+    "analytic_rwe_documented",
+    "rwe_source_type_primary",
+    "rwe_source_type_all",
+    "primary_design_category",
+    "confounding_control",
+    "missing_data_handling_documented",
+    "sensitivity_analyses_documented",
+    "negative_controls_documented",
+    "public_evidence_available",
+    "evidence_explicitness_tier",
+    "analytic_signal_present",
+    "annotation_evidence_strength",
+    "rwe_relevance_to_change",
+    "design_stated",
+    "population_stated",
+    "comparator_stated",
+    "effect_measure_stated",
+    "confounding_strategy_stated",
+    "missing_data_stated",
+    "sensitivity_analysis_stated",
+    "uncertainty_measure_stated",
+    "supporting_evidence",
+    "annotation_confidence",
+    "needs_adjudication",
+    "adjudication_reason",
+    "notes"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "rwe_documented_publicly": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "analytic_rwe_documented": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "rwe_source_type_primary": {
+      "type": "string",
+      "enum": [
+        "claims",
+        "ehr",
+        "registry",
+        "active_surveillance_network",
+        "spontaneous_reports",
+        "other",
+        "unknown"
+      ]
+    },
+    "rwe_source_type_all": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "claims",
+          "ehr",
+          "registry",
+          "active_surveillance_network",
+          "spontaneous_reports",
+          "other"
+        ]
+      }
+    },
+    "primary_design_category": {
+      "type": "string",
+      "enum": [
+        "active_comparator_cohort",
+        "cohort_non_active_comparator",
+        "case_control",
+        "self_controlled_or_case_only",
+        "registry_analysis",
+        "active_surveillance_network_analysis",
+        "descriptive_observational",
+        "spontaneous_reporting_analysis",
+        "other",
+        "unknown"
+      ]
+    },
+    "confounding_control": {
+      "type": "string",
+      "enum": [
+        "none_documented",
+        "stratification",
+        "matching_non_ps",
+        "multivariable_regression",
+        "propensity_score_matching",
+        "propensity_score_weighting",
+        "propensity_score_stratification",
+        "multiple_methods",
+        "other",
+        "unknown"
+      ]
+    },
+    "missing_data_handling_documented": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "sensitivity_analyses_documented": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "negative_controls_documented": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "public_evidence_available": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "evidence_explicitness_tier": {
+      "type": "string",
+      "enum": [
+        "explicit_rwe",
+        "explicit_observational_real_world",
+        "spontaneous_reports_only",
+        "unclear_public_basis",
+        "no_public_basis_found"
+      ]
+    },
+    "analytic_signal_present": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "annotation_evidence_strength": {
+      "type": "string",
+      "enum": ["strong", "moderate", "weak", "insufficient"]
+    },
+    "rwe_relevance_to_change": {
+      "type": "string",
+      "enum": ["direct", "possible_but_not_explicit", "unclear", "not_apparent"]
+    },
+    "design_stated": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "population_stated": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "comparator_stated": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "effect_measure_stated": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "confounding_strategy_stated": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "missing_data_stated": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "sensitivity_analysis_stated": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "uncertainty_measure_stated": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "supporting_evidence": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["doc_id", "snippet", "supports_labels"],
+        "properties": {
+          "doc_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "snippet": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 800
+          },
+          "supports_labels": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "rwe_documented_publicly",
+                "analytic_rwe_documented",
+                "rwe_source_type_primary",
+                "primary_design_category",
+                "confounding_control",
+                "missing_data_handling_documented",
+                "sensitivity_analyses_documented",
+                "negative_controls_documented",
+                "rwe_relevance_to_change",
+                "design_stated",
+                "population_stated",
+                "comparator_stated",
+                "effect_measure_stated",
+                "confounding_strategy_stated",
+                "missing_data_stated",
+                "sensitivity_analysis_stated",
+                "uncertainty_measure_stated"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "annotation_confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low"]
+    },
+    "needs_adjudication": {
+      "type": "string",
+      "enum": ["yes", "no"]
+    },
+    "adjudication_reason": {
+      "type": "string",
+      "enum": [
+        "positive_core_label",
+        "rule_model_disagreement",
+        "low_confidence",
+        "multiple_doc_conflict",
+        "transparency_inconsistency",
+        "insufficient_evidence",
+        "none"
+      ]
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 2000
+    }
+  }
+}

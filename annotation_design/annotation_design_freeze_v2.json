@@ -1,0 +1,67 @@
+{
+  "annotation_design_version": "v2",
+  "frozen_at": "2026-03-24T15:34:56-05:00",
+  "workspace_root": "<repository-root>",
+  "source_tables": {
+    "event_master": "<repository-root>/srlc_events_expanded.csv",
+    "event_document_map": "<repository-root>/event_document_map.csv",
+    "document_master": "<repository-root>/evidence_documents.csv"
+  },
+  "frozen_documents": {
+    "codebook": "<repository-root>/annotation_design/annotation_codebook_v2.md",
+    "output_schema": "<repository-root>/annotation_design/annotation_output_schema_v2.json",
+    "logic_rules": "<repository-root>/annotation_design/annotation_logic_rules_v2.md",
+    "refinement_report": "<repository-root>/annotation_design/annotation_schema_refinement_report_v2.md"
+  },
+  "scope": {
+    "unit_of_annotation": "event_id",
+    "event_count_expected": 10616,
+    "external_web_fetch_allowed_during_annotation": false,
+    "manual_review_required": false
+  },
+  "design_decisions": {
+    "core_labels_are_strict": true,
+    "auxiliary_labels_added_to_preserve_signal": true,
+    "transparency_score_is_derived_locally": true,
+    "positive_or_method_detail_labels_require_supporting_evidence": true,
+    "use_xlsx_as_annotation_source": false
+  },
+  "cost_control_policy": {
+    "freeze_codebook_before_paid_run": true,
+    "local_packet_validation_before_api": true,
+    "tiny_calibration_before_main_run": true,
+    "small_pilot_shard_before_full_run": false,
+    "full_run_must_use_cached_outputs": true,
+    "rerun_scope": "only flagged subsets, never the entire corpus by default"
+  },
+  "planned_execution_order": [
+    "freeze_annotation_design",
+    "build_annotation_packets_locally",
+    "run_local_retrieval_and_rules",
+    "validate_prompt_and_json_schema",
+    "tiny_paid_calibration_batch",
+    "schema_refinement_pass",
+    "full_first_pass_annotation",
+    "select_adjudication_subset",
+    "second_pass_adjudication",
+    "apply_consensus_and_compute_transparency_score",
+    "post_annotation_qc",
+    "freeze_final_outputs"
+  ],
+  "model_strategy": {
+    "development_mode": "non-batch for tiny calibration only",
+    "production_mode": "Batch API",
+    "primary_model_plan": "gpt-5.4-mini with reasoning_effort=low",
+    "adjudication_model_plan": "gpt-5.4 on selected subset only"
+  },
+  "schema_refinement_decisions": {
+    "accepted_new_field": "rwe_relevance_to_change",
+    "rejected_model_fields": [
+      "public_evidence_basis_type",
+      "usable_for_method_extraction"
+    ],
+    "moved_to_derived_metadata": [
+      "evidence_document_type_primary"
+    ]
+  }
+}
