@@ -2,7 +2,7 @@
 
 This repository contains the curated analysis and annotation workflow code for the manuscript on public documentation of real-world evidence (RWE) in FDA Safety-related Labeling Changes (SrLCs).
 
-The repository is intended for transparency and reproducibility review. It includes the main pipeline scripts, annotation design files, annotation prompt templates, and analysis documentation. The public annotated dataset is deposited separately on Zenodo.
+The repository is intended for transparency and reproducibility review. It includes the main pipeline scripts, annotation design files, annotation prompt templates, and analysis documentation. The public annotated dataset is deposited separately on Zenodo at https://zenodo.org/records/20073057.
 
 ## Repository Contents
 
@@ -59,8 +59,4 @@ The main workflow scripts are organized approximately as follows:
 ## Environment
 
 The scripts were run with Python 3. The main Python package dependencies are listed in `requirements.txt`.
-
-## License
-
-No final license has been selected in this release folder. Before making the GitHub repository public, choose a license consistent with author and institutional preferences.
 
